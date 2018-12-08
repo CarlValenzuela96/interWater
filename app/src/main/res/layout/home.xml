@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_marginTop="50dp"
+        android:padding="10dp"
+        android:background="#fcfcfc"
+        android:gravity="center">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="440dp"
+            android:clipToPadding="false"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <android.support.v7.widget.CardView
+
+                android:id="@+id/paginaPrincipal"
+                android:layout_width="330dp"
+                android:layout_height="420dp"
+                android:layout_margin="10dp"
+                android:clickable="false"
+                android:foreground="?android:attr/selectableItemBackground"
+                app:cardBackgroundColor="@color/plomo">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="top|center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="300dp"
+                        android:layout_height="75dp"
+                        android:src="@drawable/logo"
+                        android:layout_marginTop="20dp"/>
+                        <!--
+                        android:background="@drawable/circlebackgroundgreen"
+                        android:src="@drawable/ic_message_black_24dp" -->
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_margin="15dp"
+                        android:background="@color/colorPrimary" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="Cantidad de agua ditribuida"
+                        android:id="@+id/textViewCantAguaDist"
+                        android:gravity="center"
+                        android:textStyle="bold"
+                        android:textSize="20dp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:text="6.000 lts"
+                        android:id="@+id/CantidadDeAgua"
+                        android:gravity="center"
+                        android:textStyle="italic"
+                        android:textSize="24dp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:text="Cantidad de agua faltante"
+                        android:id="@+id/textViewCantAguaFalt"
+                        android:gravity="center"
+                        android:textStyle="bold"
+                        android:textSize="20dp"/>
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:text="14.000 lts"
+                        android:id="@+id/AguaFaltante"
+                        android:gravity="center"
+                        android:textStyle="italic"
+                        android:textSize="24dp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:text="Familias abastecidas"
+                        android:id="@+id/textViewFamAbas"
+                        android:gravity="center"
+                        android:textStyle="bold"
+                        android:textSize="20dp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:text="30"
+                        android:id="@+id/FamiAbastecidas"
+                        android:gravity="center"
+                        android:textStyle="italic"
+                        android:textSize="24dp"/>
+
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</android.support.design.widget.CoordinatorLayout>
