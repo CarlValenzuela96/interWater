@@ -32,6 +32,7 @@
                 android:backgroundTint="@color/plomo">
 
                 <LinearLayout
+
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="top|center"
@@ -42,18 +43,21 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="25dp"
                         android:text="AGREGAR COMUNIDAD"
+                        android:textColor="@color/colorAccent"
                         android:id="@+id/textViewCantAguaDist"
                         android:gravity="center"
-                        android:textStyle="normal"
+                        android:textStyle="bold"
                         android:textSize="24dp"/>
 
+
                     <android.support.design.widget.TextInputLayout
-                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:id="@+id/contenedorNombre"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_width="250dp"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="50dp"
-
+                        app:boxStrokeColor="@color/colorAccent"
+                        android:textColorHint="@color/colorAccent"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.507"
@@ -62,12 +66,12 @@
                         app:layout_constraintVertical_bias="0.498">
 
                         <android.support.design.widget.TextInputEditText
+                            android:id="@+id/nombreComunidad"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:hint="Nombre comunidad"
-                            android:id="@+id/nombreComunidad"
                             android:inputType="textShortMessage"
-                            android:textSize="15sp"/>
+                            android:textSize="15sp" />
                     </android.support.design.widget.TextInputLayout>
 
                     <TextView
@@ -75,22 +79,45 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="20dp"
                         android:text="Carga de nomina"
+                        android:textColor="@color/colorAccent"
                         android:id="@+id/textViewCantAguaFalt"
                         android:gravity="center"
                         android:textStyle="normal"
                         android:textSize="20dp"/>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center">
 
-                    <Button
-                        android:layout_width="100dp"
-                        android:layout_height="50dp"
-                        android:text="Examinar"
-                        android:layout_marginTop="15dp"/>
+                        <Button
+                            android:layout_width="100dp"
+                            android:layout_height="50dp"
+                            android:text="Examinar"
+                            android:focusableInTouchMode="true"
+                            style="@style/Widget.MaterialComponents.Button.UnelevatedButton.Icon"
+                            android:layout_marginTop="15dp"
+                            android:textSize="15dp"
+                            />
+
+                        <Button
+                            android:id="@+id/info_search_button"
+                            android:layout_width="36dp"
+                            android:layout_height="36dp"
+                            android:focusableInTouchMode="true"
+                            android:background="@drawable/outline_info_black_36dp"
+                            android:backgroundTint="@color/colorAccent"
+                            android:layout_marginTop="15dp"
+                            android:textSize="15dp"
+                            />
+                    </LinearLayout>
+
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="15dp"
-                        android:text="Datos cargados exitosamente!!"
+                        android:text="Ruta"
                         android:id="@+id/textViewCargaNomina"
                         android:gravity="center"
                         android:textColor="@color/plomoOscuro"
@@ -100,8 +127,12 @@
                         android:layout_width="150dp"
                         android:layout_height="50dp"
                         android:text="Guardar"
+                        android:focusableInTouchMode="true"
+                        style="@style/Widget.MaterialComponents.Button.UnelevatedButton.Icon"
                         android:layout_marginTop="30dp"
                         android:textSize="20dp"/>
+
+
 
                 </LinearLayout>
             </android.support.v7.widget.CardView>

@@ -6,7 +6,7 @@
                 <shape>
                     <solid android:color="@color/backgroundcolor" />
 
-                    <stroke android:width="3dp" android:color="@color/plomoOscuro" />
+                    <stroke android:width="3dp" android:color="@color/colorAccent" />
 
                     <padding android:bottom="1dp" android:left="1dp" android:right="15dp" android:top="1dp" />
 

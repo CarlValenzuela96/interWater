@@ -43,7 +43,8 @@
                         android:layout_marginTop="25dp"
                         android:text="ESTADÍSTICA"
                         android:gravity="center"
-                        android:textStyle="normal"
+                        android:textStyle="bold"
+                        android:textColor="@color/colorAccent"
                         android:textSize="24dp"/>
 
                     <TextView
@@ -53,11 +54,12 @@
                         android:text="Mes estadística"
                         android:gravity="center"
                         android:textStyle="normal"
+                        android:textColor="@color/colorAccent"
                         android:textSize="20dp"/>
 
                     <Spinner
                         android:layout_width="250dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="35dp"
                         android:id="@+id/seleccionMeses"
                         android:layout_marginTop="15dp"
                         android:entries="@array/meses"
@@ -65,19 +67,32 @@
                         android:background="@drawable/spinner_personalizado"
                         android:spinnerMode="dialog"/>
 
-                    <Button
-                        android:layout_width="225dp"
-                        android:layout_height="50dp"
-                        android:text="Gráfico de Consumo"
-                        android:layout_marginTop="30dp"
-                        android:textSize="18dp"/>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="130dp"
+                        android:gravity="center"
+                        android:orientation="horizontal">
 
-                    <Button
-                        android:layout_width="225dp"
-                        android:layout_height="50dp"
-                        android:text="Generar Reporte"
-                        android:layout_marginTop="30dp"
-                        android:textSize="18dp"/>
+                        <Button
+                            style="@style/Widget.MaterialComponents.Button.UnelevatedButton.Icon"
+                            android:layout_width="120dp"
+                            android:layout_height="60dp"
+                            android:layout_marginTop="30dp"
+                            android:layout_marginRight="10dp"
+                            android:drawableStart="@drawable/round_bar_chart_white_24dp"
+                            android:text="Gráfico"
+                            android:textSize="18dp" />
+
+                        <Button
+                            style="@style/Widget.MaterialComponents.Button.UnelevatedButton.Icon"
+                            android:layout_width="120dp"
+                            android:layout_height="60dp"
+                            android:layout_marginTop="30dp"
+                            android:drawableStart="@drawable/round_insert_drive_file_white_24dp"
+                            android:text="Reporte"
+                            android:textSize="18dp" />
+                    </LinearLayout>
+
 
                 </LinearLayout>
             </android.support.v7.widget.CardView>

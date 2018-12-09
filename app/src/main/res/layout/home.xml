@@ -3,7 +3,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    >
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -40,11 +41,9 @@
                     <ImageView
                         android:layout_width="300dp"
                         android:layout_height="75dp"
-                        android:src="@drawable/logo"
+                        android:src="@drawable/logointerwater2"
                         android:layout_marginTop="20dp"/>
-                        <!--
-                        android:background="@drawable/circlebackgroundgreen"
-                        android:src="@drawable/ic_message_black_24dp" -->
+
 
                     <View
                         android:layout_width="match_parent"
@@ -60,6 +59,7 @@
                         android:id="@+id/textViewCantAguaDist"
                         android:gravity="center"
                         android:textStyle="bold"
+                        android:textColor="@color/colorAccent"
                         android:textSize="20dp"/>
 
                     <TextView
@@ -67,15 +67,17 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="15dp"
                         android:text="6.000 lts"
+                        android:textColor="@color/colorPrimaryText"
                         android:id="@+id/CantidadDeAgua"
                         android:gravity="center"
-                        android:textStyle="italic"
+                        android:textStyle="bold"
                         android:textSize="24dp"/>
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="15dp"
+                        android:textColor="@color/colorAccent"
                         android:text="Cantidad de agua faltante"
                         android:id="@+id/textViewCantAguaFalt"
                         android:gravity="center"
@@ -87,10 +89,11 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="15dp"
+                        android:textColor="@color/colorPrimaryText"
                         android:text="14.000 lts"
                         android:id="@+id/AguaFaltante"
                         android:gravity="center"
-                        android:textStyle="italic"
+                        android:textStyle="bold"
                         android:textSize="24dp"/>
 
                     <TextView
@@ -101,16 +104,18 @@
                         android:id="@+id/textViewFamAbas"
                         android:gravity="center"
                         android:textStyle="bold"
+                        android:textColor="@color/colorAccent"
                         android:textSize="20dp"/>
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="15dp"
+                        android:textColor="@color/colorPrimaryText"
                         android:text="30"
                         android:id="@+id/FamiAbastecidas"
                         android:gravity="center"
-                        android:textStyle="italic"
+                        android:textStyle="bold"
                         android:textSize="24dp"/>
 
                 </LinearLayout>
