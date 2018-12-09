@@ -1,4 +1,4 @@
-package com.interwater.nigaca.interwater;
+package com.interwater.nigaca.interwater.Fragments;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -7,7 +7,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Spinner;
 
-public class Estadistica extends Fragment {
+import com.interwater.nigaca.interwater.R;
+
+public class EstadisticaFragment extends Fragment {
 
 
     @Override

@@ -1,4 +1,4 @@
-package com.interwater.nigaca.interwater;
+package com.interwater.nigaca.interwater.Fragments;
 
 import android.content.Context;
 import android.content.Intent;
@@ -13,7 +13,9 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;
 
-public class AgregarComunidades extends Fragment {
+import com.interwater.nigaca.interwater.R;
+
+public class AgregarComunidadesFragment extends Fragment {
 
     Button infoButton;
     Button examinar;

@@ -1,4 +1,4 @@
-package com.interwater.nigaca.interwater;
+package com.interwater.nigaca.interwater.Fragments;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -8,7 +8,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-public class Home extends Fragment {
+import com.interwater.nigaca.interwater.R;
+
+public class HomeFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater,  ViewGroup container, Bundle savedInstanceState) {

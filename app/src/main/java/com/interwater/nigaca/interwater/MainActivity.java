@@ -4,8 +4,11 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.widget.ArrayAdapter;
-import android.widget.Spinner;
+
+import com.interwater.nigaca.interwater.Fragments.AgregarComunidadesFragment;
+import com.interwater.nigaca.interwater.Fragments.ComunidadesFragment;
+import com.interwater.nigaca.interwater.Fragments.EstadisticaFragment;
+import com.interwater.nigaca.interwater.Fragments.HomeFragment;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -44,10 +47,10 @@ public class MainActivity extends AppCompatActivity {
 
         TabViewPagerAdapter tabViewPagerAdapter = new TabViewPagerAdapter(getSupportFragmentManager());
         // enviamos el fragmento "home, agregar, comunidades y estadistica" a la activity main como tabs
-        tabViewPagerAdapter.addFragment(new Home(), "Home");
-        tabViewPagerAdapter.addFragment(new AgregarComunidades(), "Agregar");
-        tabViewPagerAdapter.addFragment(new Comunidades(), "Comunidades");
-        tabViewPagerAdapter.addFragment(new Estadistica(), "Estadistica");
+        tabViewPagerAdapter.addFragment(new HomeFragment(), "Home");
+        tabViewPagerAdapter.addFragment(new AgregarComunidadesFragment(), "Agregar");
+        tabViewPagerAdapter.addFragment(new ComunidadesFragment(), "Comunidades");
+        tabViewPagerAdapter.addFragment(new EstadisticaFragment(), "Estadistica");
 
         viewPager.setAdapter(tabViewPagerAdapter);
     }
