@@ -12,7 +12,7 @@
         android:layout_marginLeft="15dp"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
-        app:cardBackgroundColor="@color/plomo"
+        app:cardBackgroundColor="@color/colorPrimaryLight"
         android:clickable="true"
         android:foreground="?android:attr/selectableItemBackground"
         >
@@ -44,7 +44,7 @@
                 android:layout_marginRight="20dp"
                 android:layout_marginLeft="20dp"
                 android:textSize="18dp"
-                android:textColor="@color/colorAccent"
+                android:textColor="@color/colorPrimaryDark"
                 android:gravity="center"
                 android:textStyle="bold"
                 />

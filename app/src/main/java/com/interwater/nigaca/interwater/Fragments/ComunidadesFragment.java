@@ -45,6 +45,9 @@ public class ComunidadesFragment extends Fragment {
         this.comunidades.setHasFixedSize(true);
         this.cAdapter = new Comunidades_adapter(com);
         this.comunidades.setAdapter(cAdapter);
+
+
+
     }
 }
 
