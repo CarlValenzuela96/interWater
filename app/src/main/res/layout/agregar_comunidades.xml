@@ -91,6 +91,7 @@
                         android:gravity="center">
 
                         <Button
+                            android:id="@+id/examinar_button"
                             android:layout_width="100dp"
                             android:layout_height="50dp"
                             android:text="Examinar"
