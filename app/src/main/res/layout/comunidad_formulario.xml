@@ -3,23 +3,29 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/back_button"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="volver"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:drawableStart="@drawable/round_arrow_back_ios_black_24dp"
+            android:drawableTint="@color/colorAccent"
+            android:textSize="20sp"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:layout_margin="10dp"
+            />
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_marginTop="15dp">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:text="COMUNIDAD:"
-            android:textSize="24dp"
-            android:gravity="center"
-            android:layout_marginLeft="10dp"
-            android:textColor="@color/colorPrimaryDark"
-            android:textStyle="bold"
-            />
 
         <TextView
             android:id="@+id/nombre_comunidad_seleccionada"
@@ -28,6 +34,7 @@
             android:text="comunidad 1"
             android:layout_marginRight="20dp"
             android:layout_marginLeft="20dp"
+            android:textAlignment="center"
             android:textSize="18dp"
             android:textColor="@color/colorPrimaryDark"
             android:gravity="center|left"
@@ -39,7 +46,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_marginTop="5dp">
 

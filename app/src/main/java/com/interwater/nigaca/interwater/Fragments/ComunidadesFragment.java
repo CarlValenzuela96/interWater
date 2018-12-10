@@ -1,14 +1,19 @@
 package com.interwater.nigaca.interwater.Fragments;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
+import com.interwater.nigaca.interwater.Activities.ComunidadActivity;
 import com.interwater.nigaca.interwater.Adapters.Comunidades_adapter;
 import com.interwater.nigaca.interwater.R;
 
@@ -18,6 +23,7 @@ public class ComunidadesFragment extends Fragment {
 
     public RecyclerView comunidades;
     public Comunidades_adapter cAdapter;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -31,20 +37,23 @@ public class ComunidadesFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
 
         ArrayList<String> com = new ArrayList<>();
-        com.add("comunidad 1");
-        com.add("comunidad 2");
-        com.add("comunidad 3");
-        com.add("comunidad 3");
-        com.add("comunidad 3");
-        com.add("comunidad 3");
-        com.add("comunidad 3");
+        com.add("COMUNIDAD 1");
+        com.add("COMUNIDAD 2");
+        com.add("COMUNIDAD 3");
+        com.add("COMUNIDAD 4");
+        com.add("COMUNIDAD 5");
+        com.add("COMUNIDAD 6");
+        com.add("COMUNIDAD 7");
 
         this.comunidades = (RecyclerView) getActivity().findViewById(R.id.comunidades_list);
         this.comunidades.setLayoutManager( new LinearLayoutManager(getActivity().getApplicationContext()));
 
         this.comunidades.setHasFixedSize(true);
-        this.cAdapter = new Comunidades_adapter(com);
+        this.cAdapter = new Comunidades_adapter(com,getActivity().getApplicationContext() );
         this.comunidades.setAdapter(cAdapter);
+
+
+
 
 
 
