@@ -12,6 +12,11 @@ public class Comunidad {
         this.nombre_comunidad = nombre_comunidad;
     }
 
+    public Comunidad(int cant_personas, String nombre_comunidad) {
+        this.cant_personas = cant_personas;
+        this.nombre_comunidad = nombre_comunidad;
+    }
+
     public int getId_comunidad() {
         return id_comunidad;
     }
@@ -52,6 +57,6 @@ public class Comunidad {
             "CREATE TABLE " + TABLE_NAME + "("
                     + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
                     + COLUMN_CANT_PERSONAS + " INTEGER,"
-                    + COLUMN_NOMBRE + " VARCHAR(255),"
+                    + COLUMN_NOMBRE + " VARCHAR(255)"
                     + ")";
 }

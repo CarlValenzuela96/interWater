@@ -4,12 +4,16 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import com.interwater.nigaca.interwater.Models.Comunidad;
 import com.interwater.nigaca.interwater.Models.Fecha;
 import com.interwater.nigaca.interwater.Models.Persona;
 import com.interwater.nigaca.interwater.Models.Suministro;
+
+import java.util.ArrayList;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 
@@ -32,7 +36,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(Comunidad.CREATE_TABLE);
         db.execSQL(Persona.CREATE_TABLE);
         db.execSQL(Suministro.CREATE_TABLE);
-
     }
 
     @Override
@@ -73,6 +76,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(Persona.COLUMN_NOMBRE,persona.getNombre_persona());
         values.put(Persona.COLUMN_PAT_APELLIDO,persona.getApellido_paterno());
         values.put(Persona.COLUMN_MAT_APELLIDO,persona.getApellido_materno());
+        values.put(Persona.COLUMN_A_CORRESPONDE,persona.getAgua_corresponde());
         values.put(Persona.COLUMN_ID_COM,persona.getComunidad().getId_comunidad());
 
         //validar si la persona esta o no.
@@ -85,7 +89,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
-        values.put(Suministro.COLUMN_CORRESPONDIENTE,suministro.getAgua_corresponde());
         values.put(Suministro.COLUMN_ENTREGADO,suministro.getAgua_entregada());
         values.put(Suministro.COLUMN_ID_FECHA,suministro.getFecha().getId_fecha());
         values.put(Suministro.COLUMN_ID_PERSONA,suministro.getPersona().getId_persona());
@@ -121,7 +124,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return fecha;
     }
 
-    public Comunidad getComunidad(int id_comunidad) {
+    public Comunidad getComunidad(long id_comunidad) {
         SQLiteDatabase db = this.getReadableDatabase();
         Comunidad comunidad = null;
 
@@ -146,13 +149,39 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return comunidad;
     }
 
+    public ArrayList<Comunidad> getAllComunidades(){
+        SQLiteDatabase db = this.getReadableDatabase();
+        Comunidad comunidad = null;
+        ArrayList<Comunidad> comunidades= new ArrayList<>();
+
+        Cursor  cursor = db.rawQuery("select * from "+Comunidad.TABLE_NAME,null);
+
+        if (cursor.moveToFirst()) {
+            while (!cursor.isAfterLast()) {
+                comunidad = new Comunidad(
+                        cursor.getInt(cursor.getColumnIndex(Comunidad.COLUMN_ID)),
+                        cursor.getInt(cursor.getColumnIndex(Comunidad.COLUMN_CANT_PERSONAS)),
+                        cursor.getString(cursor.getColumnIndex(Comunidad.COLUMN_NOMBRE))
+                );
+
+                comunidades.add(comunidad);
+                cursor.moveToNext();
+            }
+        }
+        // close the db connection
+        cursor.close();
+
+        return comunidades;
+
+    }
+
     public Persona getPersona(int rut){
         SQLiteDatabase db = this.getReadableDatabase();
         Persona persona = null;
 
         Cursor cursor = db.query(Persona.TABLE_NAME,
                 new String[]{Persona.COLUMN_ID,Persona.COLUMN_RUT,Persona.COLUMN_NOMBRE,Persona.COLUMN_PAT_APELLIDO,
-                        Persona.COLUMN_MAT_APELLIDO,Persona.COLUMN_ID_COM},
+                        Persona.COLUMN_MAT_APELLIDO,Persona.COLUMN_A_CORRESPONDE,Persona.COLUMN_ID_COM},
                 Persona.COLUMN_RUT + "=?",
                 new String[]{String.valueOf(rut)}, null, null, null, null);
 
@@ -166,6 +195,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                     cursor.getString(cursor.getColumnIndex(Persona.COLUMN_NOMBRE)),
                     cursor.getString(cursor.getColumnIndex(Persona.COLUMN_PAT_APELLIDO)),
                     cursor.getString(cursor.getColumnIndex(Persona.COLUMN_MAT_APELLIDO)),
+                    cursor.getInt(cursor.getColumnIndex(Persona.COLUMN_A_CORRESPONDE)),
                     getComunidad(cursor.getInt(cursor.getColumnIndex(Persona.COLUMN_ID_COM)))
             );
         }
@@ -175,12 +205,45 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return persona;
     }
 
+    public ArrayList<Persona> getPersonasComunidad(long idComunidad){
+        SQLiteDatabase db = this.getReadableDatabase();
+        Persona persona = null;
+        ArrayList<Persona> personas = new ArrayList<>();
+        Cursor cursor = db.query(Persona.TABLE_NAME,
+                new String[]{Persona.COLUMN_ID,Persona.COLUMN_RUT,Persona.COLUMN_NOMBRE,Persona.COLUMN_PAT_APELLIDO,
+                        Persona.COLUMN_MAT_APELLIDO,Persona.COLUMN_A_CORRESPONDE,Persona.COLUMN_ID_COM},
+                Persona.COLUMN_ID_COM + "=?",
+                new String[]{String.valueOf(idComunidad)}, null, null, null, null);
+
+
+        if (cursor.moveToFirst()) {
+            while (!cursor.isAfterLast()) {
+                persona = new Persona(
+                        cursor.getInt(cursor.getColumnIndex(Persona.COLUMN_ID)),
+                        cursor.getInt(cursor.getColumnIndex(Persona.COLUMN_RUT)),
+                        cursor.getString(cursor.getColumnIndex(Persona.COLUMN_NOMBRE)),
+                        cursor.getString(cursor.getColumnIndex(Persona.COLUMN_PAT_APELLIDO)),
+                        cursor.getString(cursor.getColumnIndex(Persona.COLUMN_MAT_APELLIDO)),
+                        cursor.getInt(cursor.getColumnIndex(Persona.COLUMN_A_CORRESPONDE)),
+                        getComunidad(cursor.getInt(cursor.getColumnIndex(Persona.COLUMN_ID_COM)))
+                );
+
+                personas.add(persona);
+                cursor.moveToNext();
+            }
+        }
+        // close the db connection
+        cursor.close();
+
+        return personas;
+    }
+
     public Suministro getSuministro(int id_suministro){
         SQLiteDatabase db = this.getReadableDatabase();
         Suministro suministro = null;
 
         Cursor cursor = db.query(Persona.TABLE_NAME,
-                new String[]{Suministro.COLUMN_ID,Suministro.COLUMN_CORRESPONDIENTE,Suministro.COLUMN_ENTREGADO,
+                new String[]{Suministro.COLUMN_ID,Suministro.COLUMN_ENTREGADO,
                         Suministro.COLUMN_ID_FECHA,Suministro.COLUMN_ID_PERSONA},
                 Persona.COLUMN_ID + "=?",
                 new String[]{String.valueOf(id_suministro)}, null, null, null, null);
@@ -191,7 +254,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             // prepare note object
             suministro = new Suministro(
                     cursor.getInt(cursor.getColumnIndex(Suministro.COLUMN_ID)),
-                    cursor.getInt(cursor.getColumnIndex(Suministro.COLUMN_CORRESPONDIENTE)),
                     cursor.getInt(cursor.getColumnIndex(Suministro.COLUMN_ENTREGADO)),
                     getFecha(cursor.getInt(cursor.getColumnIndex(Suministro.COLUMN_ID_FECHA))),
                     getPersona(cursor.getInt(cursor.getColumnIndex(Suministro.COLUMN_ID_PERSONA)))
@@ -201,6 +263,30 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         cursor.close();
 
         return suministro;
+    }
+
+    public boolean checkDataBase(String Database_path) {
+        SQLiteDatabase checkDB = null;
+        try {
+            checkDB = SQLiteDatabase.openDatabase(Database_path, null, SQLiteDatabase.OPEN_READONLY);
+            checkDB.close();
+        } catch (SQLiteException e) {
+            Log.e("Error", "No existe la base de datos " + e.getMessage());
+        }
+        return checkDB != null;
+    }
+
+    public boolean isTableExists(String nombreTabla) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        boolean isExist = false;
+        Cursor cursor = db.rawQuery("select DISTINCT tbl_name from sqlite_master where tbl_name = '" + nombreTabla + "'", null);
+        if (cursor != null) {
+            if (cursor.getCount() > 0) {
+                isExist = true;
+            }
+            cursor.close();
+        }
+        return isExist;
     }
 
 }

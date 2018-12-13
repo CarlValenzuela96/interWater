@@ -7,15 +7,34 @@ public class Persona {
     private String nombre_persona;
     private String apellido_paterno;
     private String apellido_materno;
+    private int agua_corresponde;
     private Comunidad comunidad;
 
-    public Persona(int id_persona, int rut, String nombre_persona, String apellido_paterno, String apellido_materno, Comunidad comunidad) {
+    public Persona(int id_persona, int rut, String nombre_persona, String apellido_paterno, String apellido_materno, int agua_corresponde, Comunidad comunidad) {
         this.id_persona = id_persona;
         this.rut = rut;
         this.nombre_persona = nombre_persona;
         this.apellido_paterno = apellido_paterno;
         this.apellido_materno = apellido_materno;
+        this.agua_corresponde = agua_corresponde;
         this.comunidad = comunidad;
+    }
+
+    public Persona(int rut, String nombre_persona, String apellido_paterno, String apellido_materno, int agua_corresponde, Comunidad comunidad) {
+        this.rut = rut;
+        this.nombre_persona = nombre_persona;
+        this.apellido_paterno = apellido_paterno;
+        this.apellido_materno = apellido_materno;
+        this.agua_corresponde = agua_corresponde;
+        this.comunidad = comunidad;
+    }
+
+    public int getAgua_corresponde() {
+        return agua_corresponde;
+    }
+
+    public void setAgua_corresponde(int agua_corresponde) {
+        this.agua_corresponde = agua_corresponde;
     }
 
     public int getId_persona() {
@@ -78,14 +97,17 @@ public class Persona {
     public static final String COLUMN_PAT_APELLIDO = "apellido_paterno";
     public static final String COLUMN_MAT_APELLIDO = "apellido_materno";
     public static final String COLUMN_ID_COM = "id_comunidad";
+    public static final String COLUMN_A_CORRESPONDE = "agua_corresponde";
     // Create table SQL query
     public static final String CREATE_TABLE =
             "CREATE TABLE " + TABLE_NAME + "("
                     + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+                    + COLUMN_ID_COM +" INTEGER,"
                     + COLUMN_RUT + " INTEGER,"
                     + COLUMN_NOMBRE + " VARCHAR(255),"
                     + COLUMN_PAT_APELLIDO + " VARCHAR(255),"
                     + COLUMN_MAT_APELLIDO + " VARCHAR(255),"
+                    + COLUMN_A_CORRESPONDE + " INTEGER,"
                     +" FOREIGN KEY ("+COLUMN_ID_COM+") REFERENCES "+Comunidad.TABLE_NAME+"("+Comunidad.COLUMN_ID+")"
                     + ")";
 }

@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.interwater.nigaca.interwater.Activities.ComunidadActivity;
+import com.interwater.nigaca.interwater.Models.Comunidad;
 import com.interwater.nigaca.interwater.R;
 
 import java.util.ArrayList;
@@ -17,9 +18,9 @@ import java.util.ArrayList;
 public class Comunidades_adapter extends RecyclerView.Adapter<Comunidades_adapter.RepositoryViewHolder> {
 
     Context context;
-    ArrayList<String> a;
+    ArrayList<Comunidad> a;
 
-    public Comunidades_adapter(ArrayList<String> a, Context context ) {
+    public Comunidades_adapter(ArrayList<Comunidad> a, Context context ) {
 
         this.a=a;
         this.context = context;
@@ -33,7 +34,7 @@ public class Comunidades_adapter extends RecyclerView.Adapter<Comunidades_adapte
 
     @Override
     public void onBindViewHolder(RepositoryViewHolder holder, int i) {
-        holder.asignarDatos(this.a.get(i),i);
+        holder.asignarDatos(this.a.get(i));
     }
 
     @Override
@@ -58,7 +59,7 @@ public class Comunidades_adapter extends RecyclerView.Adapter<Comunidades_adapte
                     Intent i = new Intent(itemView.getContext(),ComunidadActivity.class);
 
                     i.putExtra("nombre_comunidad", nombre_comunidad.getText());
-
+                    i.putExtra("id_comunidad",id_comunidad.getText());
                     itemView.getContext().startActivity(i);
                 }
             });
@@ -66,9 +67,9 @@ public class Comunidades_adapter extends RecyclerView.Adapter<Comunidades_adapte
         }
 
 
-        public void asignarDatos(String a,int i){
-            nombre_comunidad.setText(a);
-            id_comunidad.setText(String.valueOf(i+1));
+        public void asignarDatos(Comunidad a){
+            nombre_comunidad.setText(a.getNombre_comunidad());
+            id_comunidad.setText(String.valueOf(a.getId_comunidad()));
         }
 
     }

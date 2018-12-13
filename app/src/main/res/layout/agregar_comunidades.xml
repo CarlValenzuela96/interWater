@@ -69,6 +69,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:hint="Nombre comunidad"
+                            android:text=""
                             android:inputType="textShortMessage"
                             android:textSize="15sp" />
                     </android.support.design.widget.TextInputLayout>
@@ -94,7 +95,6 @@
                             android:layout_width="100dp"
                             android:layout_height="50dp"
                             android:text="Examinar"
-                            android:focusableInTouchMode="true"
                             style="@style/Widget.MaterialComponents.Button.UnelevatedButton.Icon"
                             android:layout_marginTop="15dp"
                             android:textSize="15dp"
@@ -104,7 +104,6 @@
                             android:id="@+id/info_search_button"
                             android:layout_width="36dp"
                             android:layout_height="36dp"
-                            android:focusableInTouchMode="true"
                             android:background="@drawable/outline_info_black_36dp"
                             android:backgroundTint="@color/colorAccent"
                             android:layout_marginTop="15dp"
@@ -124,10 +123,10 @@
                         android:textSize="15dp"/>
 
                     <Button
+                        android:id="@+id/guardar_comunidad_button"
                         android:layout_width="150dp"
                         android:layout_height="50dp"
                         android:text="Guardar"
-                        android:focusableInTouchMode="true"
                         style="@style/Widget.MaterialComponents.Button.UnelevatedButton.Icon"
                         android:layout_marginTop="30dp"
                         android:textSize="20dp"/>

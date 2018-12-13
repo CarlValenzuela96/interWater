@@ -15,6 +15,8 @@ import android.widget.Toast;
 
 import com.interwater.nigaca.interwater.Activities.ComunidadActivity;
 import com.interwater.nigaca.interwater.Adapters.Comunidades_adapter;
+import com.interwater.nigaca.interwater.Controller.ComunidadController;
+import com.interwater.nigaca.interwater.Models.Comunidad;
 import com.interwater.nigaca.interwater.R;
 
 import java.util.ArrayList;
@@ -35,21 +37,15 @@ public class ComunidadesFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        ComunidadController cController  = new ComunidadController(getActivity().getApplicationContext());
+        ArrayList<Comunidad> com = cController.getAllComunidades();
 
-        ArrayList<String> com = new ArrayList<>();
-        com.add("COMUNIDAD 1");
-        com.add("COMUNIDAD 2");
-        com.add("COMUNIDAD 3");
-        com.add("COMUNIDAD 4");
-        com.add("COMUNIDAD 5");
-        com.add("COMUNIDAD 6");
-        com.add("COMUNIDAD 7");
 
         this.comunidades = (RecyclerView) getActivity().findViewById(R.id.comunidades_list);
         this.comunidades.setLayoutManager( new LinearLayoutManager(getActivity().getApplicationContext()));
 
         this.comunidades.setHasFixedSize(true);
-        this.cAdapter = new Comunidades_adapter(com,getActivity().getApplicationContext() );
+        this.cAdapter = new Comunidades_adapter(com,getActivity().getApplicationContext());
         this.comunidades.setAdapter(cAdapter);
 
 

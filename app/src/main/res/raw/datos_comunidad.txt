@@ -1,0 +1,8 @@
+Carlos;Valenzuela;Carrasco;900;11111111
+Felipe;Jimenez;Opazo;1500;19305576
+Andres;Uribe;Uribe;1200;12123123
+Ana;Esparza;Jimenez;900;12111222
+Maria;Sarabia;Carrasco;1200;25255236
+Miguel;Rivas;Esparza;1500;14120125
+Gabriel;Carrasco;Opazo;1200;18254120
+Nicolas;Opazo;Jimenez;900;20159147

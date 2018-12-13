@@ -55,14 +55,14 @@ public class Fecha {
     public static final String COLUMN_ID = "id_fecha";
     public static final String COLUMN_DIA = "dia";
     public static final String COLUMN_MES = "mes";
-    public static final String COLUMN_YEAR = "año";
+    public static final String COLUMN_YEAR = "year";
     // Create table SQL query
     public static final String CREATE_TABLE =
-            "CREATE TABLE " + TABLE_NAME + "("
+            "CREATE TABLE " + TABLE_NAME + " ("
                     + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
                     + COLUMN_DIA + " INTEGER,"
                     + COLUMN_MES + " INTEGER,"
-                    + COLUMN_YEAR + " INTEGER,"
+                    + COLUMN_YEAR + " INTEGER"
                     + ")";
 
 }

@@ -7,15 +7,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.interwater.nigaca.interwater.Models.Persona;
 import com.interwater.nigaca.interwater.R;
 
 import java.util.ArrayList;
 
 public class Comunidad_select_adapter extends RecyclerView.Adapter<Comunidad_select_adapter.RepositoryViewHolder> {
 
-    ArrayList<String> arr;
+    ArrayList<Persona> arr;
 
-    public Comunidad_select_adapter(ArrayList<String> arr) {
+    public Comunidad_select_adapter(ArrayList<Persona> arr) {
 
     this.arr = arr;
     }
@@ -39,16 +40,19 @@ public class Comunidad_select_adapter extends RecyclerView.Adapter<Comunidad_sel
 
     public class RepositoryViewHolder extends RecyclerView.ViewHolder {
         TextView nombre;
+        TextView corresponde_agua;
 
         public RepositoryViewHolder(@NonNull View itemView) {
             super(itemView);
             this.nombre = itemView.findViewById(R.id.nombre_persona);
-
+            this.corresponde_agua = itemView.findViewById(R.id.corresponde_agua);
 
         }
 
-        public void asignarDatos(String a){
-            nombre.setText(a);
+        public void asignarDatos(Persona a){
+
+            nombre.setText(a.getNombre_persona()+" "+a.getApellido_paterno());
+            corresponde_agua.setText(String.valueOf(a.getAgua_corresponde())+" Lts");
         }
     }
 }
