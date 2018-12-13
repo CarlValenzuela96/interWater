@@ -13,7 +13,10 @@ import com.interwater.nigaca.interwater.Models.Fecha;
 import com.interwater.nigaca.interwater.Models.Persona;
 import com.interwater.nigaca.interwater.Models.Suministro;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Locale;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 
@@ -106,6 +109,34 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 new String[]{Fecha.COLUMN_ID,Fecha.COLUMN_DIA,Fecha.COLUMN_MES,Fecha.COLUMN_YEAR},
                 Fecha.COLUMN_ID + "=?",
                 new String[]{String.valueOf(id_fecha)}, null, null, null, null);
+
+        if (cursor != null && cursor.moveToFirst()) {
+            cursor.moveToFirst();
+
+            // prepare note object
+            fecha = new Fecha(
+                    cursor.getInt(cursor.getColumnIndex(Fecha.COLUMN_ID)),
+                    cursor.getInt(cursor.getColumnIndex(Fecha.COLUMN_DIA)),
+                    cursor.getInt(cursor.getColumnIndex(Fecha.COLUMN_MES)),
+                    cursor.getInt(cursor.getColumnIndex(Fecha.COLUMN_YEAR))
+            );
+        }
+        // close the db connection
+        cursor.close();
+
+        return fecha;
+    }
+
+    public Fecha getFechaActual(){
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+        Date date = new Date();
+        int year = Integer.valueOf(dateFormat.format(date).split("-")[0]);
+        int mes =  Integer.valueOf(dateFormat.format(date).split("-")[1]);
+        int dia = Integer.valueOf(dateFormat.format(date).split("-")[2]);
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Fecha fecha = null;
+        Cursor cursor = db.rawQuery("select * from fecha where dia = '" + dia + "' and mes = '"+mes+"' and year = '"+year+"'", null);
 
         if (cursor != null && cursor.moveToFirst()) {
             cursor.moveToFirst();
@@ -280,6 +311,20 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
         boolean isExist = false;
         Cursor cursor = db.rawQuery("select DISTINCT tbl_name from sqlite_master where tbl_name = '" + nombreTabla + "'", null);
+        if (cursor != null) {
+            if (cursor.getCount() > 0) {
+                isExist = true;
+            }
+            cursor.close();
+        }
+        return isExist;
+    }
+
+
+    public boolean isDateExist(int dia, int mes, int year){
+        SQLiteDatabase db = this.getReadableDatabase();
+        boolean isExist = false;
+        Cursor cursor = db.rawQuery("select * from fecha where dia = '" + dia + "' and mes = '"+mes+"' and year = '"+year+"'", null);
         if (cursor != null) {
             if (cursor.getCount() > 0) {
                 isExist = true;

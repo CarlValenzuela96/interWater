@@ -14,6 +14,17 @@ public class Fecha {
         this.year = year;
     }
 
+    @Override
+    public String toString() {
+        return dia + "-" + mes + "-" + year;
+    }
+
+    public Fecha(int dia, int mes, int year) {
+        this.dia = dia;
+        this.mes = mes;
+        this.year = year;
+    }
+
     public int getId_fecha() {
         return id_fecha;
     }

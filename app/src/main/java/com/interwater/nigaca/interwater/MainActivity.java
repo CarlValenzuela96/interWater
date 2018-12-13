@@ -12,44 +12,24 @@ import com.interwater.nigaca.interwater.Fragments.AgregarComunidadesFragment;
 import com.interwater.nigaca.interwater.Fragments.ComunidadesFragment;
 import com.interwater.nigaca.interwater.Fragments.EstadisticaFragment;
 import com.interwater.nigaca.interwater.Fragments.HomeFragment;
+import com.interwater.nigaca.interwater.Models.Fecha;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
 
     private TabLayout tabLayout;
     private ViewPager viewPager;
 
-
-    //private final static String[] names = { "Enero", "Febrero", "Marzo",
-      //      "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"  };
-
-    //private Spinner meses;
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        DatabaseHelper dbh = new DatabaseHelper(this);
-
-        if(!dbh.checkDataBase(dbh.getWritableDatabase().getPath())) {
-            Context context = this;
-            CharSequence text = "db_ya no existe";
-            int duration = Toast.LENGTH_SHORT;
-
-            Toast toast = Toast.makeText(context, text, duration);
-            toast.show();
-
-            dbh.onCreate(dbh.getWritableDatabase());
-        }else{
-            Context context = this;
-            CharSequence text = "db_ya existe";
-            int duration = Toast.LENGTH_SHORT;
-
-            Toast toast = Toast.makeText(context, text, duration);
-            toast.show();
-        }
+        crearDB();
+        crearFecha();
 
         tabLayout = (TabLayout)findViewById(R.id.tabLayout);
         viewPager = (ViewPager)findViewById(R.id.viewPager);
@@ -70,5 +50,42 @@ public class MainActivity extends AppCompatActivity {
         tabViewPagerAdapter.addFragment(new EstadisticaFragment(), "Estadistica");
 
         viewPager.setAdapter(tabViewPagerAdapter);
+    }
+
+   public void crearDB(){
+       DatabaseHelper dbh = new DatabaseHelper(this);
+
+       if(!dbh.checkDataBase(dbh.getWritableDatabase().getPath())) {
+           Context context = this;
+           CharSequence text = "db no existe";
+           int duration = Toast.LENGTH_SHORT;
+
+           Toast toast = Toast.makeText(context, text, duration);
+           toast.show();
+
+           dbh.onCreate(dbh.getWritableDatabase());
+       }else{
+           Context context = this;
+           CharSequence text = "db existe";
+           int duration = Toast.LENGTH_SHORT;
+
+           Toast toast = Toast.makeText(context, text, duration);
+           toast.show();
+       }
+   }
+
+   public void crearFecha(){
+
+       SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+       Date date = new Date();
+       int year = Integer.valueOf(dateFormat.format(date).split("-")[0]);
+       int mes =  Integer.valueOf(dateFormat.format(date).split("-")[1]);
+       int dia = Integer.valueOf(dateFormat.format(date).split("-")[2]);
+
+       DatabaseHelper dbh = new DatabaseHelper(this);
+
+       if(!dbh.isDateExist(dia,mes,year)){
+           dbh.insertFecha(new Fecha(dia,mes,year));
+       }
     }
 }
