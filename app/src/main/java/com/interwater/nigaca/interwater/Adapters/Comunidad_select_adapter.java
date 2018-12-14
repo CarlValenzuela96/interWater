@@ -1,15 +1,23 @@
 package com.interwater.nigaca.interwater.Adapters;
 
+import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.design.widget.TextInputEditText;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.interwater.nigaca.interwater.Activities.ComunidadActivity;
+import com.interwater.nigaca.interwater.Controller.SuministroController;
 import com.interwater.nigaca.interwater.Database.DatabaseHelper;
 import com.interwater.nigaca.interwater.Models.Fecha;
 import com.interwater.nigaca.interwater.Models.Persona;
+import com.interwater.nigaca.interwater.Models.Suministro;
 import com.interwater.nigaca.interwater.R;
 
 import java.util.ArrayList;
@@ -41,27 +49,54 @@ public class Comunidad_select_adapter extends RecyclerView.Adapter<Comunidad_sel
 
 
     public class RepositoryViewHolder extends RecyclerView.ViewHolder {
+
         TextView nombre;
         TextView corresponde_agua;
         TextView fecha_entrega;
         DatabaseHelper databaseHelper;
+        Button guardar_suministro_button;
+        TextInputEditText cant_agua_entregada;
 
-        public RepositoryViewHolder(@NonNull View itemView) {
+        Persona p ;
+        Fecha f;
+
+        public RepositoryViewHolder(@NonNull final View itemView) {
             super(itemView);
             this.nombre = itemView.findViewById(R.id.nombre_persona);
             this.corresponde_agua = itemView.findViewById(R.id.corresponde_agua);
             this.fecha_entrega = itemView.findViewById(R.id.fecha_entrega);
-
             this.databaseHelper = new DatabaseHelper(itemView.getContext());
+            this.cant_agua_entregada = itemView.findViewById(R.id.cant_agua_entregada);
+
+            guardar_suministro_button = itemView.findViewById(R.id.guardar_suministro_button);
+            guardar_suministro_button.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int cantAgua = Integer.valueOf(String.valueOf(cant_agua_entregada.getText()));
+                    Suministro s = new Suministro(cantAgua,f,p);
+                    SuministroController suministroController = new SuministroController(itemView.getContext());
+                    suministroController.addSuministro(s);
+
+                    Context context = itemView.getContext();
+                    CharSequence text = "Suministro agregado correctamente";
+                    int duration = Toast.LENGTH_SHORT;
+
+                    Toast toast = Toast.makeText(context, text, duration);
+                    toast.show();
+
+                }
+            });
+
 
         }
 
         public void asignarDatos(Persona a){
+            this.p = a;
 
             nombre.setText(a.getNombre_persona()+" "+a.getApellido_paterno());
             corresponde_agua.setText(String.valueOf(a.getAgua_corresponde())+" Lts");
 
-            Fecha f = databaseHelper.getFechaActual();
+            this.f = databaseHelper.getFechaActual();
             this.fecha_entrega.setText(f.toString());
         }
     }

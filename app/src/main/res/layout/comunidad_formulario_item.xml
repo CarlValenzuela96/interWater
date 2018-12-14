@@ -200,7 +200,7 @@
                 <Button
                     android:textColor="@color/colorPrimaryDark"
                     android:foreground="?android:attr/selectableItemBackground"
-                    android:id="@+id/guardar_comunidad_button"
+                    android:id="@+id/guardar_suministro_button"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:text="Agregar"

@@ -14,6 +14,12 @@ public class Suministro {
         this.persona = persona;
     }
 
+    public Suministro(int agua_entregada, Fecha fecha, Persona persona) {
+        this.agua_entregada = agua_entregada;
+        this.fecha = fecha;
+        this.persona = persona;
+    }
+
     public int getId_suministro() {
         return id_suministro;
     }
