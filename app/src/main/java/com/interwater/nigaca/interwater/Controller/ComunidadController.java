@@ -5,7 +5,6 @@ import android.content.Context;
 import com.interwater.nigaca.interwater.Database.DatabaseHelper;
 import com.interwater.nigaca.interwater.Models.Comunidad;
 import com.interwater.nigaca.interwater.Models.Persona;
-import com.interwater.nigaca.interwater.R;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -63,6 +62,10 @@ public class ComunidadController {
         }
 
         return personas;
+    }
+
+    public void leerArchivoExterno(){
+
     }
 
 }

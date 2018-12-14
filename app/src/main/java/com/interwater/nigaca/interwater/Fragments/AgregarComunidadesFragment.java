@@ -124,7 +124,7 @@ public class AgregarComunidadesFragment extends Fragment {
         Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
         Uri uri = Uri.parse(Environment.getExternalStorageDirectory().getPath()
                 + "/myFolder/");
-        intent.setDataAndType(uri, "application/pdf");
+        intent.setDataAndType(uri, "*/*");
 
         startActivityForResult(Intent.createChooser(intent, "Open folder"),CHOOSE_FILE);
 
@@ -142,8 +142,8 @@ public class AgregarComunidadesFragment extends Fragment {
 
         if (requestCode == CHOOSE_FILE) {
 
-
             Uri fileUri = data.getData();
+
             Context context = getActivity().getApplicationContext();
             CharSequence text = fileUri.toString();
             int duration = Toast.LENGTH_SHORT;
