@@ -11,6 +11,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.SearchView;
 import android.widget.Toast;
 
 import com.interwater.nigaca.interwater.Activities.ComunidadActivity;
@@ -25,7 +26,6 @@ public class ComunidadesFragment extends Fragment {
 
     public RecyclerView comunidades;
     public Comunidades_adapter cAdapter;
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -47,8 +47,6 @@ public class ComunidadesFragment extends Fragment {
         this.comunidades.setHasFixedSize(true);
         this.cAdapter = new Comunidades_adapter(com,getActivity().getApplicationContext());
         this.comunidades.setAdapter(cAdapter);
-
-
 
 
 

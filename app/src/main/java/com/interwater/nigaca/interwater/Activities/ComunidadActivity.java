@@ -5,8 +5,12 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.SearchView;
 import android.widget.TextView;
 
 import com.interwater.nigaca.interwater.Adapters.Comunidad_select_adapter;
@@ -22,6 +26,7 @@ public class ComunidadActivity extends AppCompatActivity {
     public Comunidad_select_adapter cAdapter;
     public TextView nombreComunidad;
     public Button backButton;
+    public android.support.v7.widget.SearchView search_action;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -47,6 +52,22 @@ public class ComunidadActivity extends AppCompatActivity {
         this.usuarios.setHasFixedSize(true);
         this.cAdapter = new Comunidad_select_adapter(users);
         this.usuarios.setAdapter(cAdapter);
+
+
+        this.search_action = findViewById(R.id.search_action);
+        this.search_action.setOnQueryTextListener(new android.support.v7.widget.SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                cAdapter.getFilter().filter(newText);
+                return false;
+            }
+        });
+
 
         backButton = findViewById(R.id.back_button);
 

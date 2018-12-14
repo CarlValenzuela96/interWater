@@ -11,6 +11,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,13 +26,14 @@ import com.interwater.nigaca.interwater.R;
 
 import java.util.ArrayList;
 
-public class Comunidad_select_adapter extends RecyclerView.Adapter<Comunidad_select_adapter.RepositoryViewHolder> {
+public class Comunidad_select_adapter extends RecyclerView.Adapter<Comunidad_select_adapter.RepositoryViewHolder> implements Filterable {
 
     ArrayList<Persona> arr;
+    ArrayList<Persona> arrFull;
 
     public Comunidad_select_adapter(ArrayList<Persona> arr) {
-
     this.arr = arr;
+    this.arrFull = new ArrayList<>(arr);
     }
 
     @Override
@@ -50,6 +53,40 @@ public class Comunidad_select_adapter extends RecyclerView.Adapter<Comunidad_sel
         return this.arr.size();
     }
 
+    @Override
+    public Filter getFilter() {
+        return personaFilter;
+    }
+
+    private Filter personaFilter = new Filter() {
+        @Override
+        protected FilterResults performFiltering(CharSequence constraint) {
+            ArrayList<Persona> filteredList = new ArrayList<>();
+            if(constraint == null || constraint.length() == 0){
+                filteredList.addAll(arrFull);
+
+            }else{
+                String filterPattern = constraint.toString().toLowerCase().trim();
+
+                for (Persona persona : arrFull){
+                    if(persona.getNombre_persona().toLowerCase().contains(filterPattern)){
+                        filteredList.add(persona);
+                    }
+                }
+            }
+
+            FilterResults results = new FilterResults();
+            results.values = filteredList;
+            return results;
+        }
+
+        @Override
+        protected void publishResults(CharSequence constraint, FilterResults results) {
+            arr.clear();
+            arr.addAll((ArrayList) results.values);
+            notifyDataSetChanged();
+        }
+    };
 
     public class RepositoryViewHolder extends RecyclerView.ViewHolder {
 
