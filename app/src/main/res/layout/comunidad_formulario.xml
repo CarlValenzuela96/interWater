@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
 
         <Button
             android:id="@+id/back_button"
@@ -18,8 +21,26 @@
             android:textSize="18sp"
             android:textColor="@color/colorPrimaryDark"
             android:foreground="?android:attr/selectableItemBackground"
-            android:layout_margin="5dp"
-            />
+            android:layout_margin="5dp" />
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/backgroundcolor"
+            app:layout_scrollFlags="scroll|enterAlways|snap">
+
+            <RelativeLayout
+                android:id="@+id/not"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <android.support.v7.widget.SearchView
+                    android:layout_alignParentRight="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </RelativeLayout>
+        </android.support.v7.widget.Toolbar>
+
     </LinearLayout>
 
     <LinearLayout
@@ -27,8 +48,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:background="@color/colorPrimaryDark"
-        >
+        android:background="@color/colorPrimaryDark">
 
         <TextView
             android:id="@+id/nombre_comunidad_seleccionada"
@@ -43,22 +63,6 @@
             android:gravity="center|left"
             android:textStyle="bold"
             />
-
-    </LinearLayout>
-
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="5dp">
-
-        <SearchView
-            android:layout_marginLeft="10dp"
-            android:id="@+id/buscarPersona"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:queryHint="Buscar Persona"/>
 
     </LinearLayout>
 
