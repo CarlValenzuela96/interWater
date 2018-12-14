@@ -17,7 +17,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="440dp"
+            android:layout_height="450dp"
             android:clipToPadding="false"
             android:gravity="center"
             android:orientation="horizontal">
@@ -26,7 +26,7 @@
 
                 android:id="@+id/paginaPrincipal"
                 android:layout_width="330dp"
-                android:layout_height="420dp"
+                android:layout_height="430dp"
                 android:layout_margin="10dp"
                 android:clickable="false"
                 android:foreground="?android:attr/selectableItemBackground"

@@ -198,11 +198,13 @@
                 android:gravity="center">
 
                 <Button
+                    android:textColor="@color/colorPrimaryDark"
+                    android:foreground="?android:attr/selectableItemBackground"
                     android:id="@+id/guardar_comunidad_button"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:text="Agregar"
-                    style="@style/Widget.MaterialComponents.Button.UnelevatedButton.Icon"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                     android:textSize="20dp"
                     android:layout_marginBottom="5dp"/>
 
