@@ -85,7 +85,7 @@
                         android:layout_marginTop="15dp"
                         android:text="6.000 lts"
                         android:textColor="@color/colorPrimaryText"
-                        android:id="@+id/CantidadDeAgua"
+                        android:id="@+id/Cantidad_suministrada_diario"
                         android:gravity="center"
                         android:textStyle="bold"
                         android:textSize="24dp"/>
@@ -108,7 +108,7 @@
                         android:layout_marginTop="15dp"
                         android:textColor="@color/colorPrimaryText"
                         android:text="14.000 lts"
-                        android:id="@+id/AguaFaltante"
+                        android:id="@+id/agua_faltante_diario"
                         android:gravity="center"
                         android:textStyle="bold"
                         android:textSize="24dp"/>
@@ -130,7 +130,7 @@
                         android:layout_marginTop="15dp"
                         android:textColor="@color/colorPrimaryText"
                         android:text="30"
-                        android:id="@+id/FamiAbastecidas"
+                        android:id="@+id/familia_abastecidas_diario"
                         android:gravity="center"
                         android:textStyle="bold"
                         android:textSize="24dp"/>

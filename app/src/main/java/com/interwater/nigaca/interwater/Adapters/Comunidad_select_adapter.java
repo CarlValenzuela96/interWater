@@ -9,6 +9,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -40,6 +42,7 @@ public class Comunidad_select_adapter extends RecyclerView.Adapter<Comunidad_sel
     @Override
     public void onBindViewHolder(Comunidad_select_adapter.RepositoryViewHolder holder, int i) {
         holder.asignarDatos(this.arr.get(i));
+
     }
 
     @Override
@@ -56,6 +59,7 @@ public class Comunidad_select_adapter extends RecyclerView.Adapter<Comunidad_sel
         DatabaseHelper databaseHelper;
         Button guardar_suministro_button;
         TextInputEditText cant_agua_entregada;
+        CheckBox check_recepcion;
 
         Persona p ;
         Fecha f;
@@ -67,23 +71,43 @@ public class Comunidad_select_adapter extends RecyclerView.Adapter<Comunidad_sel
             this.fecha_entrega = itemView.findViewById(R.id.fecha_entrega);
             this.databaseHelper = new DatabaseHelper(itemView.getContext());
             this.cant_agua_entregada = itemView.findViewById(R.id.cant_agua_entregada);
+            this.check_recepcion = itemView.findViewById(R.id.check_recepcion);
+            this.guardar_suministro_button = itemView.findViewById(R.id.guardar_suministro_button);
 
-            guardar_suministro_button = itemView.findViewById(R.id.guardar_suministro_button);
-            guardar_suministro_button.setOnClickListener(new View.OnClickListener() {
+            this.check_recepcion.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                    if(isChecked){
+                        guardar_suministro_button.setEnabled(true);
+                    }else{
+                        guardar_suministro_button.setEnabled(false);
+                    }
+                }
+            });
+
+            this.guardar_suministro_button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    int cantAgua = Integer.valueOf(String.valueOf(cant_agua_entregada.getText()));
-                    Suministro s = new Suministro(cantAgua,f,p);
-                    SuministroController suministroController = new SuministroController(itemView.getContext());
-                    suministroController.addSuministro(s);
+                    if(!cant_agua_entregada.getText().toString().isEmpty()) {
+                        int cantAgua = Integer.valueOf(String.valueOf(cant_agua_entregada.getText()));
+                        Suministro s = new Suministro(cantAgua, f, p);
+                        SuministroController suministroController = new SuministroController(itemView.getContext());
+                        suministroController.addSuministro(s);
 
-                    Context context = itemView.getContext();
-                    CharSequence text = "Suministro agregado correctamente";
-                    int duration = Toast.LENGTH_SHORT;
+                        Context context = itemView.getContext();
+                        CharSequence text = "Suministro agregado correctamente";
+                        int duration = Toast.LENGTH_SHORT;
 
-                    Toast toast = Toast.makeText(context, text, duration);
-                    toast.show();
+                        Toast toast = Toast.makeText(context, text, duration);
+                        toast.show();
+                    }else{
+                        Context context = itemView.getContext();
+                        CharSequence text = "Ingresar cantidad de agua correspondiente";
+                        int duration = Toast.LENGTH_SHORT;
 
+                        Toast toast = Toast.makeText(context, text, duration);
+                        toast.show();
+                    }
                 }
             });
 
@@ -99,5 +123,8 @@ public class Comunidad_select_adapter extends RecyclerView.Adapter<Comunidad_sel
             this.f = databaseHelper.getFechaActual();
             this.fecha_entrega.setText(f.toString());
         }
+
+
+
     }
 }

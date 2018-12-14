@@ -67,7 +67,7 @@
                     android:textStyle="bold" />
 
                 <CheckBox
-                    android:id="@+id/chb_si"
+                    android:id="@+id/check_recepcion"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="20dp"
@@ -206,7 +206,9 @@
                     android:text="Agregar"
                     style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                     android:textSize="20dp"
-                    android:layout_marginBottom="5dp"/>
+                    android:layout_marginBottom="5dp"
+                    android:enabled="false"
+                    />
 
             </LinearLayout>
 

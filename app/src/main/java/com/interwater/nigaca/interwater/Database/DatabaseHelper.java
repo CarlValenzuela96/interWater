@@ -296,6 +296,34 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return suministro;
     }
 
+    public ArrayList<Suministro> getSuministroDiario(){
+        Fecha fechaSum = getFechaActual();
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Suministro suministro = null;
+        ArrayList<Suministro> suministros= new ArrayList<>();
+
+        Cursor  cursor = db.rawQuery("select * from "+Suministro.TABLE_NAME+" where id_fecha = '"+fechaSum.getId_fecha()+"'",null);
+
+
+        if (cursor.moveToFirst()) {
+            while (!cursor.isAfterLast()) {
+                suministro = new Suministro(
+                        cursor.getInt(cursor.getColumnIndex(Suministro.COLUMN_ID)),
+                        cursor.getInt(cursor.getColumnIndex(Suministro.COLUMN_ENTREGADO)),
+                        getFecha(cursor.getInt(cursor.getColumnIndex(Suministro.COLUMN_ID_FECHA))),
+                        getPersona(cursor.getInt(cursor.getColumnIndex(Suministro.COLUMN_ID_PERSONA)))
+                );
+
+                suministros.add(suministro);
+                cursor.moveToNext();
+            }
+        }
+        // close the db connection
+        cursor.close();
+        return suministros;
+    }
+
     public boolean checkDataBase(String Database_path) {
         SQLiteDatabase checkDB = null;
         try {

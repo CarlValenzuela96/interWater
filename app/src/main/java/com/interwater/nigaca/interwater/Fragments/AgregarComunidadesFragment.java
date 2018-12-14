@@ -77,7 +77,7 @@ public class AgregarComunidadesFragment extends Fragment {
 
                 String name = String.valueOf(nombre_comunidad.getText());
 
-                if(path_file_to_add!=""&& name!=""){
+                if(!path_file_to_add.isEmpty() && !nombre_comunidad.getText().toString().isEmpty()){
                     Comunidad c = new Comunidad(10,name);
                     ComunidadController cController = new ComunidadController(getActivity().getApplicationContext());
                     long idCom = cController.agregarComunidad(c);
@@ -87,15 +87,29 @@ public class AgregarComunidadesFragment extends Fragment {
                     PersonaController pController = new PersonaController(getActivity().getApplicationContext());
                     pController.addPersonasToComunidad(personas);
 
+                    path_file_to_add ="";
+                    nombre_comunidad.setText("");
+
                     Context context = getActivity().getApplicationContext();
                     CharSequence text = "Comunidad guardada exitosamente";
                     int duration = Toast.LENGTH_SHORT;
 
                     Toast toast = Toast.makeText(context, text, duration);
                     toast.show();
+
+
                 }else{
+                    String msg="";
+                    if(nombre_comunidad.getText().toString().isEmpty()){
+                        msg = "Ingrese nombre de la comunidad";
+                    }
+
+                    if(path_file_to_add.isEmpty()){
+                        msg += "\nPor favor cargue planilla";
+                    }
+
                     Context context = getActivity().getApplicationContext();
-                    CharSequence text = "Faltan Datos";
+                    CharSequence text = msg;
                     int duration = Toast.LENGTH_SHORT;
 
                     Toast toast = Toast.makeText(context, text, duration);

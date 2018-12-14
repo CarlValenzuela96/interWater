@@ -5,10 +5,13 @@ import android.content.Context;
 import com.interwater.nigaca.interwater.Database.DatabaseHelper;
 import com.interwater.nigaca.interwater.Models.Suministro;
 
-public class SuministroController {
-    DatabaseHelper dbh;
+import java.util.ArrayList;
 
-    Context context;
+public class SuministroController {
+
+    public int META_DIARIA = 20000;
+    public DatabaseHelper dbh;
+    public Context context;
 
     public SuministroController(Context context) {
         this.context = context;
@@ -19,5 +22,24 @@ public class SuministroController {
         this.dbh.insertSuministro(suministro);
     }
 
+    public int suministroDiario(){
+        this.dbh = new DatabaseHelper(this.context);
+        ArrayList<Suministro> sumDiario = this.dbh.getSuministroDiario();
+        int suministro = 0;
+        for (int i=0;i<sumDiario.size();i++){
+            suministro = suministro + sumDiario.get(i).getAgua_entregada();
+        }
+        return suministro;
+    }
 
+    public int familiasSuministradasDiario(){
+        this.dbh = new DatabaseHelper(this.context);
+        ArrayList<Suministro> sumDiario = this.dbh.getSuministroDiario();
+        return sumDiario.size();
+    }
+
+    public int suministroFaltanteDiario(){
+        int falta = META_DIARIA - suministroDiario();
+        return falta;
+    }
 }
