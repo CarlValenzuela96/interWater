@@ -55,10 +55,7 @@ public class EstadisticaFragment extends Fragment {
                 }else{
                     Context context = getActivity().getApplicationContext();
                     CharSequence text = "No existen registros asociados a ese periodo";
-                    int duration = Toast.LENGTH_SHORT;
-
-                    Toast toast = Toast.makeText(context, text, duration);
-                    toast.show();
+                    Toast.makeText(context, text, Toast.LENGTH_LONG).show();
                 }
             }
         });

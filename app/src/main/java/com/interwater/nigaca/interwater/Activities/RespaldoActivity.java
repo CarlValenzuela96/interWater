@@ -32,31 +32,10 @@ public class RespaldoActivity extends AppCompatActivity {
             }
         });
 
-        this.rb_guardar_local = (RadioButton)findViewById(R.id.rb_guardar_local);
-        this.rb_enviar_correo = (RadioButton)findViewById(R.id.rb_enviar_correo);
 
-        String msg="";
 
-        if(this.rb_guardar_local.isChecked()){
-            msg="guardado localmente";
-        }else if(this.rb_enviar_correo.isChecked()){
-            msg="enviado correo";
-        }
 
-        this.guardar_reporte_button = findViewById(R.id.guardar_reporte_button);
 
-        final String finalMsg = msg;
-        this.guardar_reporte_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Context context = v.getContext();
-                CharSequence text = finalMsg;
-                int duration = Toast.LENGTH_SHORT;
-
-                Toast toast = Toast.makeText(context, text, duration);
-                toast.show();
-            }
-        });
 
     }
 }

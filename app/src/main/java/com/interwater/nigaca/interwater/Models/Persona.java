@@ -85,6 +85,11 @@ public class Persona {
         this.apellido_materno = apellido_materno;
     }
 
+    @Override
+    public String toString() {
+        return  nombre_persona +" "+ apellido_paterno;
+    }
+
     /***********************************************************
      * SQL-LITE USE | VARIABLES ASSOCIATED WHIT PERSONA ENTITY
      ***********************************************************/

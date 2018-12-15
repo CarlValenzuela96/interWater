@@ -69,7 +69,7 @@ public class Comunidad_select_adapter extends RecyclerView.Adapter<Comunidad_sel
                 String filterPattern = constraint.toString().toLowerCase().trim();
 
                 for (Persona persona : arrFull){
-                    if(persona.getNombre_persona().toLowerCase().contains(filterPattern)){
+                    if(persona.toString().trim().toLowerCase().contains(filterPattern)){
                         filteredList.add(persona);
                     }
                 }
