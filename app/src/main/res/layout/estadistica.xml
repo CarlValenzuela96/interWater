@@ -94,6 +94,7 @@
                         android:orientation="horizontal">
 
                         <Button
+                            android:id="@+id/grafico_button"
                             style="@style/Widget.MaterialComponents.Button.UnelevatedButton.Icon"
                             android:layout_width="120dp"
                             android:layout_height="60dp"
@@ -104,6 +105,7 @@
                             android:textSize="18dp" />
 
                         <Button
+                            android:id="@+id/reporte_button"
                             style="@style/Widget.MaterialComponents.Button.UnelevatedButton.Icon"
                             android:layout_width="120dp"
                             android:layout_height="60dp"

@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
+<ScrollView android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
@@ -6,15 +12,47 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:textSize="24dp"
-        android:text="REPORTE"
-        android:textColor="@color/colorAccent"
-        android:textAlignment="center"
-        android:layout_marginTop="50dp"
-        android:textStyle="bold"/>
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/back_button"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="volver"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:drawableStart="@drawable/round_arrow_back_ios_black_24dp"
+            android:drawableTint="@color/colorPrimaryDark"
+            android:textSize="18sp"
+            android:textColor="@color/colorPrimaryDark"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:layout_margin="5dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:padding="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@color/colorPrimaryDark">
+
+        <TextView
+            android:id="@+id/nombre_comunidad_seleccionada"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="REPORTE"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="20dp"
+            android:textAlignment="center"
+            android:textSize="18dp"
+            android:textColor="@color/colorPrimaryLight"
+            android:gravity="center|left"
+            android:textStyle="bold"
+            />
+
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -26,11 +64,20 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
-            android:text="Año estadística:"
+            android:text="Período:"
             android:layout_marginLeft="20dp"
             android:textStyle="normal"
             android:textColor="@color/colorAccent"
             android:textSize="20dp"/>
+
+        <TextView
+            android:id="@+id/reporte_mes"
+            android:textSize="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="30dp"
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:hint="Mes"/>
 
         <TextView
             android:id="@+id/reporte_año"
@@ -53,20 +100,21 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:text="Mes estadística:"
+            android:text="Personas abstecidas:"
             android:layout_marginLeft="20dp"
             android:textStyle="normal"
             android:textColor="@color/colorAccent"
             android:textSize="20dp"/>
 
         <TextView
-            android:id="@+id/reporte_mes"
+            android:id="@+id/personas_abs"
             android:textSize="20dp"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="20dp"
             android:layout_width="100dp"
             android:layout_height="match_parent"
-            android:hint="Mes"/>
+            android:hint="Fecha"/>
+
 
     </LinearLayout>
 
@@ -80,16 +128,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:text="Total mes:"
+            android:text="Total abastecido:"
             android:layout_marginLeft="20dp"
             android:textStyle="normal"
             android:textColor="@color/colorAccent"
             android:textSize="20dp"/>
 
         <TextView
-            android:id="@+id/reporte_Total_Mes"
+            android:id="@+id/total_abs"
             android:textSize="20dp"
-            android:layout_marginLeft="75dp"
+            android:layout_marginLeft="25dp"
             android:layout_marginTop="20dp"
             android:layout_width="100dp"
             android:layout_height="match_parent"
@@ -108,7 +156,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scrollbars="vertical"
-            android:layout_marginLeft="20dp">
+           >
 
         </android.support.v7.widget.RecyclerView>
 
@@ -132,8 +180,10 @@
             android:layout_height="50dp"
             android:text="Guardar"
             style="@style/Widget.MaterialComponents.Button.UnelevatedButton.Icon"
-            android:textSize="20dp"/>
+            android:textSize="20dp"
+            android:layout_marginBottom="20dp"/>
 
     </LinearLayout>
 
 </LinearLayout>
+</ScrollView>

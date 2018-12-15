@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:descendantFocusability="beforeDescendants"
+    android:focusableInTouchMode="true"
+
+    >
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_margin="15dp"
+        android:background="@color/colorPrimary" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="top|left"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="Comunidad:"
+            android:layout_marginLeft="20dp"
+            android:textStyle="normal"
+            android:textColor="@color/colorAccent"
+            android:textSize="15sp"/>
+
+        <TextView
+            android:id="@+id/reporte_comunidad_nombre"
+            android:textSize="15sp"
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="Total"
+            />
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="top|left"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="Personas abstecidas:"
+            android:layout_marginLeft="20dp"
+            android:textStyle="normal"
+            android:textColor="@color/colorAccent"
+            android:textSize="15sp"/>
+
+        <TextView
+            android:id="@+id/reporte_comunidad_personas"
+            android:textSize="15sp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:hint="Fecha"/>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="top|left"
+        android:orientation="horizontal"
+        android:layout_marginBottom="20dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="Total abastecido:"
+            android:layout_marginLeft="20dp"
+            android:textStyle="normal"
+            android:textColor="@color/colorAccent"
+            android:textSize="15sp"/>
+
+        <TextView
+            android:id="@+id/reporte_comunidad_total"
+            android:textSize="15sp"
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="20dp"
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:hint="Total"/>
+
+    </LinearLayout>
+
+
+</LinearLayout>

@@ -9,6 +9,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
 import com.interwater.nigaca.interwater.Models.Comunidad;
+import com.interwater.nigaca.interwater.Models.Estadistica;
 import com.interwater.nigaca.interwater.Models.Fecha;
 import com.interwater.nigaca.interwater.Models.Persona;
 import com.interwater.nigaca.interwater.Models.Suministro;
@@ -348,7 +349,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return isExist;
     }
 
-
     public boolean isDateExist(int dia, int mes, int year){
         SQLiteDatabase db = this.getReadableDatabase();
         boolean isExist = false;
@@ -362,4 +362,87 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return isExist;
     }
 
+    public boolean isExistReport(int mes, int year){
+        SQLiteDatabase db = this.getReadableDatabase();
+        boolean isExist = false;
+        Cursor cursor = db.rawQuery( "select suministro.id_suministro, suministro.agua_entregada, fecha.mes, fecha.year, comunidad.id_comunidad from suministro "
+                +"inner join fecha on suministro.id_fecha = fecha.id_fecha "
+                +"inner join persona on suministro.id_persona = persona.id_persona "
+                +"inner join comunidad on persona.id_comunidad = comunidad.id_comunidad "
+                +"where fecha.mes ='" +mes+ "' and fecha.year = '"+year+"'",null);
+
+        if (cursor != null) {
+            if (cursor.getCount() > 0) {
+                isExist = true;
+            }
+            cursor.close();
+        }
+        return isExist;
+    }
+
+    public ArrayList<Estadistica> estadisticaMensual(int mes, int year){
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Estadistica estadistica = null;
+        ArrayList<Estadistica> estadisticas= new ArrayList<>();
+
+        Cursor cursor = db.rawQuery( "select suministro.id_suministro, suministro.agua_entregada, fecha.mes, fecha.year, comunidad.id_comunidad from suministro "
+                +"inner join fecha on suministro.id_fecha = fecha.id_fecha "
+                +"inner join persona on suministro.id_persona = persona.id_persona "
+                +"inner join comunidad on persona.id_comunidad = comunidad.id_comunidad "
+                +"where fecha.mes ='" +mes+ "' and fecha.year = '"+year+"'",null);
+
+
+        if (cursor.moveToFirst()) {
+            while (!cursor.isAfterLast()) {
+                estadistica = new Estadistica(
+                        cursor.getInt(cursor.getColumnIndex(Suministro.COLUMN_ID)),
+                        cursor.getInt(cursor.getColumnIndex(Suministro.COLUMN_ENTREGADO)),
+                        cursor.getInt(cursor.getColumnIndex(Fecha.COLUMN_MES)),
+                        cursor.getInt(cursor.getColumnIndex(Fecha.COLUMN_YEAR)),
+                        cursor.getInt(cursor.getColumnIndex(Comunidad.COLUMN_ID))
+                );
+
+
+                estadisticas.add(estadistica);
+                cursor.moveToNext();
+            }
+        }
+        // close the db connection
+        cursor.close();
+        return estadisticas;
+    }
+
+    public ArrayList<Estadistica> estadisticaMensualComunidad(int mes, int year, int idComunidad){
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Estadistica estadistica = null;
+        ArrayList<Estadistica> estadisticas= new ArrayList<>();
+
+        Cursor cursor = db.rawQuery( "select suministro.id_suministro, suministro.agua_entregada, fecha.mes, fecha.year, comunidad.id_comunidad from suministro "
+                +"inner join fecha on suministro.id_fecha = fecha.id_fecha "
+                +"inner join persona on suministro.id_persona = persona.id_persona "
+                +"inner join comunidad on persona.id_comunidad = comunidad.id_comunidad "
+                +"where fecha.mes ='" +mes+ "' and fecha.year = '"+year+"' and  comunidad.id_comunidad ='"+idComunidad+"'",null);
+
+
+        if (cursor.moveToFirst()) {
+            while (!cursor.isAfterLast()) {
+                estadistica = new Estadistica(
+                        cursor.getInt(cursor.getColumnIndex(Suministro.COLUMN_ID)),
+                        cursor.getInt(cursor.getColumnIndex(Suministro.COLUMN_ENTREGADO)),
+                        cursor.getInt(cursor.getColumnIndex(Fecha.COLUMN_MES)),
+                        cursor.getInt(cursor.getColumnIndex(Fecha.COLUMN_YEAR)),
+                        cursor.getInt(cursor.getColumnIndex(Comunidad.COLUMN_ID))
+                );
+
+
+                estadisticas.add(estadistica);
+                cursor.moveToNext();
+            }
+        }
+        // close the db connection
+        cursor.close();
+        return estadisticas;
+    }
 }

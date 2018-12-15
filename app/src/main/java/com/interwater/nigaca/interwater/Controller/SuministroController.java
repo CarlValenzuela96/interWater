@@ -42,4 +42,6 @@ public class SuministroController {
         int falta = META_DIARIA - suministroDiario();
         return falta;
     }
+
+
 }

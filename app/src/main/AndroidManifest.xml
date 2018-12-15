@@ -22,6 +22,12 @@
         <activity android:name=".Activities.ComunidadActivity"
             android:screenOrientation="portrait"
             ></activity>
+        <activity android:name=".Activities.ReporteActivity"
+            android:screenOrientation="portrait"
+            ></activity>
+        <activity android:name=".Activities.RespaldoActivity"
+            android:screenOrientation="portrait"
+            ></activity>
     </application>
 
 </manifest>
