@@ -49,6 +49,7 @@ public class EstadisticaFragment extends Fragment {
                 if(dbh.isExistReport(mesIndex,Integer.parseInt(seleccionAños.getSelectedItem().toString()))) {
 
                     Intent i = new Intent(getActivity().getApplicationContext(), ReporteActivity.class);
+                    i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     i.putExtra("year", seleccionAños.getSelectedItem().toString());
                     i.putExtra("mes", seleccionMeses.getSelectedItem().toString());
                     getActivity().getApplicationContext().startActivity(i);
