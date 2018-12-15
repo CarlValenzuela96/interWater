@@ -128,12 +128,6 @@ public class AgregarComunidadesFragment extends Fragment {
 
         startActivityForResult(Intent.createChooser(intent, "Open folder"),CHOOSE_FILE);
 
-        Context context = getActivity().getApplicationContext();
-        CharSequence text = intent.getDataString();
-        int duration = Toast.LENGTH_SHORT;
-
-        Toast toast = Toast.makeText(context, text, duration);
-        toast.show();
     }
 
     @Override
@@ -143,14 +137,7 @@ public class AgregarComunidadesFragment extends Fragment {
         if (requestCode == CHOOSE_FILE) {
 
             Uri fileUri = data.getData();
-
-            Context context = getActivity().getApplicationContext();
-            CharSequence text = fileUri.toString();
-            int duration = Toast.LENGTH_SHORT;
-
-            Toast toast = Toast.makeText(context, text, duration);
-            toast.show();
-
+            
             this.path_file_to_add = fileUri.getPath();
         }
 
